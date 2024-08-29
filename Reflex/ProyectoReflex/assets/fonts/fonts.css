@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Arsenal;
+    src: url("/fonts/ArsenalSC-Regular.ttf") format("trueype");
+}
+
+@font-face {
+    font-family: Amsterdam;
+    font-weight: bold;
+    src: url("/fonts/NewAmsterdam-Regular.ttf") format("truetype");
+}

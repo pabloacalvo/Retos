@@ -1,6 +1,7 @@
 import reflex as rx
 from ProyectoReflex.components.link_button import link_button
 from ProyectoReflex.components.title import title
+from ProyectoReflex.styles.styles import Size as Size
 
 
 def links() -> rx.Component:
@@ -31,6 +32,7 @@ def links() -> rx.Component:
         link_button("Facebook",
                     "No se usa mas",
                     "https://google.com.ar"),
-        width="100%"
+        width="100%",
+        spacing=Size.BIG.value
     ),
     
