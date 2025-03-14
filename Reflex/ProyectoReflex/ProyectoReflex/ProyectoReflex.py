@@ -15,7 +15,7 @@ def index():
         navbar(),
         rx.center(
             rx.vstack(
-                header(),
+                #header(),
                 links(),
                 width="100%",
                 margin_top="10px",

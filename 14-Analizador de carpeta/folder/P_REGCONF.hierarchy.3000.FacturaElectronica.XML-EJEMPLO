@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<POSConfigurations>
+
+<Debug>true</Debug>
+	<Actions>
+		 <Action ClassName="com.ncr.asr.afip.ActionFacturaElectronica" EventListener="true" Name="ActionFacturaElectronica"/>
+		<Action Name="ActionReprintReceipt" ClassName="com.ncr.asr.ActionReprintReceipt" EventListener="true"/>
+    </Actions>
+    
+	<Taxes>
+		<UseFiscalInPerceptions _Replace="true" >false</UseFiscalInPerceptions>
+		<UseAfipInPerceptions>true</UseAfipInPerceptions>
+	</Taxes>
+    <Environment>	
+		<Peripherals>
+			<FiscalPrinter>
+				<AdjustFiscalRounding _Replace="true">false</AdjustFiscalRounding>
+				<FiscalPrinterLayout _Replace="true">com.ncr.asr.FiscalLayoutToJS fileName=js/FiscalLayout.js</FiscalPrinterLayout>
+				<!--<ActionCodesNotToPrintList></ActionCodesNotToPrintList> restringe la impresion de comprobantes no fiscales nativos para posteriormente configurarlos con una validacion-->
+				<!-- Desactiva Cajonera por PrinterFiscal-->
+				<CashDrawerFiscal _Replace="true">false</CashDrawerFiscal>
+				<DiscardErrorMessageAfterAuthorization _Replace="true">true</DiscardErrorMessageAfterAuthorization>
+				<DoNotCancelInActionCodes>00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;67;68;69;70;71;72;73;74;75;76;77;78;79;80;81;82;83;84;85;86;87;88;89;90;91;92;93;94;95;96;97;98;99;100</DoNotCancelInActionCodes>
+				<AskForSupervisorToIgnoreFiscalError>true</AskForSupervisorToIgnoreFiscalError>
+				<SueRecEmpty>IMPRESORA SIN PAPEL, COLOCAR ROLLO NUEVO</SueRecEmpty>
+				<SueRecNearEmpty>IMPRESORA CON POCO PAPEL</SueRecNearEmpty>
+				<appendInsideValidationToTrailerLines>false</appendInsideValidationToTrailerLines>
+			</FiscalPrinter>
+			<!--PosPrinterBaseName _Replace="true">PosPrinter</PosPrinterBaseName-->
+			<AssignTransactionFiscalInBeginFiscal>false</AssignTransactionFiscalInBeginFiscal>
+		</Peripherals>
+		<EssAbortFiscal _Replace="true">AbortFiscal</EssAbortFiscal>
+		<EssContinueWithoutFiscalPrint _Replace="true">ContinueWithoutFiscalPrint</EssContinueWithoutFiscalPrint>
+		<DebugValidation _Replace="true">true</DebugValidation>
+	</Environment>
+	
+	<ElectronicSupervisor ip="127.0.0.1" port="9999" enabled="true" _Replace="true">
+		<EssConfig _Replace="true" EssServerAvailable="false" MessageConsumerDelay="3000" MessageConsumerEchoDelay="30000" MessageReaderDisconnectDelay="5000" MessageReaderProcessDelay="2000" MessageWriterRetries="0" ProtocolReaderDelay="1000" Timeout="10" debug="true"/>
+		<AuthorizationOperation messageType="19" name="Event.ReprintReceipt"/>
+		<AuthorizationOperation code="9999" messageType="53" name="AbortFiscal"/>
+		<AuthorizationOperation code="9999" messageType="54" name="ContinueWithoutFiscalPrint"/>
+	</ElectronicSupervisor>
+	<Customer>
+		<ActionFacturaElectronica ClassName="com.ncr.asr.afip.ActionFacturaElectronica">
+			<ClientCAE Host="10.154.100.94" Port="8018" Timeout="40000" Debug="true" Type="" />
+			<ClientCAEReverse Host="10.154.100.94" Port="8019" Timeout="40000" Debug="true"  ErrorSecondsDelay="30" Type="" />
+			<ClientCAEA Host="10.154.100.94" Port="8020" Timeout="40000" Debug="true" ErrorSecondsDelay="30" Type="" />
+			<RecoverFiscalIdFromGateway>true</RecoverFiscalIdFromGateway>
+            		<Host>10.154.100.94</Host>
+            		<Port>8243</Port>
+            		<Timeout>10000</Timeout>
+			<OverwriteCaeaSeqOnInit>true</OverwriteCaeaSeqOnInit>
+			<NoCustomerLimit>17224400</NoCustomerLimit> <!-- Se implementa en 2400 Customer Identification -->																		  
+			
+			<VatMap Code="0">3</VatMap>
+			<VatMap Code="2100">5</VatMap>
+			<VatMap Code="1050">4</VatMap>
+			
+			<DocTypeMap Code="2">96</DocTypeMap> <!-- DNI -->
+			<DocTypeMap Code="0">80</DocTypeMap> <!-- CUIT -->
+			<DocTypeMap Code="1">86</DocTypeMap> <!-- CUIL -->
+			<DocTypeMap Code="6">89</DocTypeMap> <!-- LE -->
+			<DocTypeMap Code="5">90</DocTypeMap> <!-- LC -->
+			<DocTypeMap Code="3">1</DocTypeMap> <!-- CI -->
+			<DocTypeMap Code="4">91</DocTypeMap> <!-- PASAPORTE -->
+			
+			<PerceptionMap Code="1">6</PerceptionMap>
+			<PerceptionMap Code="2">13</PerceptionMap>
+			<PerceptionMap Code="700">7</PerceptionMap>
+			<PerceptionMap Code="901">7</PerceptionMap>
+			<PerceptionMap Code="902">7</PerceptionMap>
+			<PerceptionMap Code="903">7</PerceptionMap>
+			<PerceptionMap Code="904">7</PerceptionMap>
+			<PerceptionMap Code="905">7</PerceptionMap>
+			<PerceptionMap Code="908">7</PerceptionMap>
+			<PerceptionMap Code="909">7</PerceptionMap>
+			<PerceptionMap Code="910">7</PerceptionMap>
+			<PerceptionMap Code="913">7</PerceptionMap>
+			<PerceptionMap Code="914">7</PerceptionMap>
+			<PerceptionMap Code="915">7</PerceptionMap>
+			<PerceptionMap Code="918">7</PerceptionMap>
+			<PerceptionMap Code="919">7</PerceptionMap>
+			<PerceptionMap Code="921">7</PerceptionMap>
+			<PerceptionMap Code="924">7</PerceptionMap>
+			<PerceptionMap Code="800">8</PerceptionMap>
+            <PerceptionMap Code="1000">8</PerceptionMap>
+			<PerceptionMap Code="1108">8</PerceptionMap>
+			<PerceptionMap Code="2201">8</PerceptionMap>
+			
+			<!-- Codigos de Error internos AFIP -->
+			<AfipInternalErrors>500,501,502</AfipInternalErrors>
+			<AfipInternalEvents>500,501,502</AfipInternalEvents>
+			<AfipInternalObservations>500,501,502</AfipInternalObservations>
+			
+			<!-- NC/ND de RG 4540/19 -->
+			<AddPeriodAsoc>true</AddPeriodAsoc>
+			<AddCbteAsocNcReferenciada>true</AddCbteAsocNcReferenciada>
+			<!--CuitEmissorDelComprNcReferenciada></CuitEmissorDelComprNcReferenciada--> 
+			<EnableRegularCustomerIfCemFails>true</EnableRegularCustomerIfCemFails>
+			
+			<!-- Bloque de configuracion de Mensaje de Rechazo -->
+			<ShowResponseErrorMessage>true</ShowResponseErrorMessage>
+			<!-- Tag to be replaced: {code} and {msg} - For new line separator use '#' -->
+			<ResponseErrorMessagePattern>ERROR:{code} MENSAJE:{msg}</ResponseErrorMessagePattern>
+			<ErrorMessageDefault>NO APROBADO</ErrorMessageDefault>
+			<MaxChars>43</MaxChars>
+			
+			<AfipQRURL>https://servicioscf.afip.gob.ar/publico/comprobantes/cae.aspx?p=</AfipQRURL>
+		</ActionFacturaElectronica>
+	</Customer>
+	
+</POSConfigurations>

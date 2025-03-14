@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquema Snowflake - Data Warehouse</title>
+    <!-- Cargar Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h2>Esquema Snowflake</h2>
+    <div class="mermaid">
+        graph TD
+            Inventario_Almacen -->|FK| Dim_Almacen
+            Inventario_Almacen -->|FK| Dim_Articulo
+            Inventario_Almacen -->|FK| Dim_Tiempo_Ingreso
+            Inventario_Almacen -->|FK| Dim_Tiempo_Egreso
+
+            Dim_Articulo -->|FK| Dim_Material
+            Dim_Material -->|FK| Dim_Proveedor
+
+            subgraph Tabla de Hechos
+                Inventario_Almacen
+            end
+
+            subgraph Dimensiones
+                Dim_Almacen
+                Dim_Articulo
+                Dim_Tiempo_Ingreso
+                Dim_Tiempo_Egreso
+                Dim_Material
+                Dim_Proveedor
+            end
+    </div>
+</body>
+</html>
