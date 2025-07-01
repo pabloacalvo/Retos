@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 import time
 from time import sleep
 from threading import Thread
@@ -8,6 +9,21 @@ def function1():
 
 def function2():
     print("Hola, funcion 2")
+    sleep(3)
+
+def function3():
+    print("Hola, funcion 3")
+    sleep(2)
+
+def function4():
+    print("Hola, funcion 4")
+    sleep(3)
+def function5():
+    print("Hola, funcion 5")
+    sleep(2)
+
+def function6():
+    print("Hola, funcion 6")
     sleep(3)
 
 start = time.time()
@@ -28,3 +44,12 @@ thread2.join()
 
 
 print(time.time() -start)
+
+# Lista de funciones
+funtions = [function1,function2,function3,function4,function5,function6]
+
+# Crear Pool de threads
+with ThreadPoolExecutor(max_workers=4) as worker:
+    for f in funtions:
+        worker.submit(f)
+    
